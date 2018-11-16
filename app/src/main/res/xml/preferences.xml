@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference android:title="Votre mail"
+        android:key="username"
+        android:summary="Donnez votre adresse email"
+        ></EditTextPreference>
+    <ListPreference     android:title="Date début de la plage (Notification)"
+        android:summary="ABCD"
+        android:key="downloadType"
+        android:defaultValue="1"
+        android:entries="@array/listArray"
+        android:entryValues="@array/listValues" />
+</PreferenceScreen>

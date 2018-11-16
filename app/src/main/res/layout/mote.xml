@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="10dp" >
+
+    <ImageView android:id="@+id/light" android:layout_width="50dp" android:layout_height="50dp" tools:background="#AAA" />
+
+    <TextView android:id="@+id/mote" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@android:color/black" android:layout_marginLeft="10dp" android:layout_toRightOf="@+id/light" android:layout_alignTop="@+id/avatar" android:textStyle="bold" tools:text="193.11" />
+
+    <TextView android:id="@+id/infos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@android:color/black" android:layout_alignLeft="@+id/mote" android:layout_below="@+id/mote" tools:text="Valeur Lumen : " />
+
+</RelativeLayout>

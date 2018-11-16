@@ -1,20 +1,25 @@
 package eu.telecomnancy.projetamio;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Debug;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ListView;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainService extends Service {
+public class CallService extends Service {
 
     Timer timer = new Timer();
     TimerTask task;
 
-    public MainService() {
+    public CallService()
+    {
         Log.d("Main service","Service constructor");
         timer();
     }
@@ -37,10 +42,13 @@ public class MainService extends Service {
     {
         task = new TimerTask() {
             public void run() {
-                Log.d("Main Service", "Log récurrent 5 S");
+
+                WebServiceCall wb = new WebServiceCall(getApplicationContext());
+                wb.execute();
+                Log.d("Main Service", "Log récurrent 3 S");
             }
         };
-        timer.schedule(task, 0, 5000);
+        timer.schedule(task, 0, 3000);
     }
 
     public void onDestroy() {

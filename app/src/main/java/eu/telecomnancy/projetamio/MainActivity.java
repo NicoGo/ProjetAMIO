@@ -6,56 +6,60 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ToggleButton button1;
-    private TextView tv1, tv2, tv3, tv4, tv5, tv6;
-    private CheckBox checkBox;
+    private ListView mListView;
     private SharedPreferences sharedPreferences = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-
-
-
-
         setContentView(R.layout.activity_main);
         Log.d("MainActivity", "Création de l'activité");
 
 
-        this.button1 = (ToggleButton) findViewById(R.id.button1);
-        this.tv2 = (TextView) findViewById(R.id.TV2);
-        this.checkBox = (CheckBox) findViewById(R.id.checkBox);
-        final Intent intent = new Intent(getApplicationContext(), MainService.class);
+        this.mListView = (ListView) findViewById(R.id.listView);
+        ViewHandler.setView(getApplicationContext(),this.mListView);
+
+        final Intent intent = new Intent(getApplicationContext(), CallService.class);
+        startService(intent);
 
         /*
             Checkbox shared preference
          */
 
-        sharedPreferences = getBaseContext().getSharedPreferences("checkbox", MODE_PRIVATE);
+        //sharedPreferences = getBaseContext().getSharedPreferences("checkbox", MODE_PRIVATE);
 
-        Boolean parameter =  sharedPreferences.getBoolean("checkbox", false);
-        if (parameter != null) {
-            if (parameter == true) {
-                tv2.setText("démarré");
-                checkBox.setChecked(true);
-            }
-        } else {};
+        //Boolean parameter =  sharedPreferences.getBoolean("checkbox", false);
+        //if (parameter != null) {
+            //if (parameter == true) {
+            //    tv2.setText("démarré");
+           //     checkBox.setChecked(true);
+         //   }
+        //} else {};
 
+
+
+
+/*
 
         button1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     startService(intent);
                     tv2.setText("démarré");
+
                 }
 
                 else {
@@ -66,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
+/*
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -84,10 +88,26 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
             }
         });
-
+*/
 
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_edit:
+                Intent i = new Intent(getApplicationContext(), AppPreferencesActivity.class);
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 
     protected void onDestroy() {
