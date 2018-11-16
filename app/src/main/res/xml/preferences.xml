@@ -10,4 +10,11 @@
         android:defaultValue="1"
         android:entries="@array/listArray"
         android:entryValues="@array/listValues" />
+    <EditTextPreference
+        android:defaultValue="23"
+        android:dialogTitle="Salut"
+        android:inputType="number"
+        android:key="minWeek"
+        android:summary="effezkefzlk"
+        android:title="Entrez l'heure de début de contrôle (semaine)" />
 </PreferenceScreen>
